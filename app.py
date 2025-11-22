@@ -2,6 +2,8 @@ import streamlit as st
 import utils
 import time
 import google.generativeai as genai
+import os
+
 
 # Page Configuration
 st.set_page_config(

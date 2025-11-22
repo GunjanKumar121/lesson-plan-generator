@@ -1,6 +1,8 @@
 import google.generativeai as genai
 import json
 import streamlit as st
+import os
+
 
 def generate_lesson_plan(grade, subject, topic, duration, api_key):
     """
