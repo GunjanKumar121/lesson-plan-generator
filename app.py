@@ -133,11 +133,11 @@ if generate_btn:
                             if response.status_code == 200:
                                 st.image(image_url, caption=keyword.capitalize(), use_container_width=True)
                             else:
-                                st.warning("Not images available right now")
+                                st.warning("images not available right now")
                         except:
-                             st.warning("Not images available right now")
+                             st.warning("images not available right now")
             else:
-                st.info("Not images available right now")
+                st.info("images not available right now")
 
 else:
     # Empty State
