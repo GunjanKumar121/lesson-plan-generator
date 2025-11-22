@@ -44,11 +44,11 @@ with st.sidebar:
     st.markdown("---")
     
     # Try to get key from secrets
-    gemini_api_key = os.getenv("GEMINI_API_KEY")
-    if not gemini_api_key:
+    api_key = os.getenv("GEMINI_API_KEY")
+    if not api_key:
         st.error("GEMINI_API_KEY environment variable is not set")
         st.stop()
-    genai.configure(api_key=gemini_api_key)    
+    genai.configure(api_key=api_key)    
     generate_btn = st.button("Generate Lesson Plan")
     
     st.markdown("---")
