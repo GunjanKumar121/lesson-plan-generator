@@ -122,20 +122,15 @@ if generate_btn:
                 keywords = plan['image_keywords'][:4]
                 cols = st.columns(len(keywords))
                 
-                import requests
+                import urllib.parse
                 
                 for idx, keyword in enumerate(keywords):
                     with cols[idx]:
-                        image_url = f"https://image.pollinations.ai/prompt/{keyword}?width=400&height=300&nologo=true"
-                        try:
-                            # Fast check if image is reachable
-                            response = requests.head(image_url, timeout=3)
-                            if response.status_code == 200:
-                                st.image(image_url, caption=keyword.capitalize(), use_container_width=True)
-                            else:
-                                st.warning("images not available right now")
-                        except:
-                             st.warning("images not available right now")
+                        encoded_keyword = urllib.parse.quote(keyword)
+                        image_url = f"https://image.pollinations.ai/prompt/{encoded_keyword}?width=400&height=300&nologo=true"
+                        # Use markdown to load images client-side (faster) instead of server-side
+                        st.markdown(f"![{keyword}]({image_url})")
+                        st.caption(keyword.capitalize())
             else:
                 st.info("images not available right now")
 

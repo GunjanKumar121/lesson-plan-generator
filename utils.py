@@ -4,6 +4,7 @@ import streamlit as st
 import os
 
 
+@st.cache_data(show_spinner=False)
 def generate_lesson_plan(grade, subject, topic, duration, api_key):
     """
     Generates a lesson plan using Google's Gemini API.
