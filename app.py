@@ -1,6 +1,7 @@
 import streamlit as st
 import utils
 import time
+import google.generativeai as genai
 
 # Page Configuration
 st.set_page_config(
@@ -41,11 +42,11 @@ with st.sidebar:
     st.markdown("---")
     
     # Try to get key from secrets
-    if "GEMINI_API_KEY" in st.secrets:
-        api_key = st.secrets["GEMINI_API_KEY"]
-    else:
-        api_key = st.text_input("Gemini API Key", type="password", help="Get your key from Google AI Studio")
-    
+    gemini_api_key = os.getenv("GEMINI_API_KEY")
+    if not gemini_api_key:
+        st.error("GEMINI_API_KEY environment variable is not set")
+        st.stop()
+    genai.configure(api_key=gemini_api_key)    
     generate_btn = st.button("Generate Lesson Plan")
     
     st.markdown("---")
